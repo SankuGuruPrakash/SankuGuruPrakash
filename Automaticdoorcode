@@ -1,0 +1,29 @@
+#include<Servo.h>
+Servo myservo;
+int led=4;
+int pir1=7;
+int pir2=6;
+void setup()
+{
+  pinMode(pir1, INPUT);
+  pinMode(pir2, INPUT);
+  pinMode(led, OUTPUT);
+  myservo.attach(9);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int val1=digitalRead(pir1);
+  int val2=digitalRead(pir2);
+  if(val1==HIGH || val2==HIGH)
+  {
+    digitalWrite(led,HIGH);
+    myservo.write(70);
+  }
+  else{
+    digitalWrite(led,LOW);
+    myservo.write(10);
+  }
+  delay(100); // Wait for 1000 millisecond(s)
+}
